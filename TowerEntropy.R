@@ -1,0 +1,10 @@
+setwd("/home/lingzi/cdr/CleanCDR3Result2/")
+phones<-read.table("/home/lingzi/cdr/CleanCDR3Result2/AggrePhone.txt",sep=",",head=FALSE)
+colnames(phones)<-c("pid","tid","towers","total","typeone","typetwo","gyra","mob")
+entropy<-aggregate(phones[,3:8],by=list(phones$tid),FUN=entropy)
+write.csv(entropy,"TowerEntropy.csv")
+aggdata<-aggregate(phones[,3:8],by=list(phones$tid),FUN=mean)
+write.csv(aggdata,"TowerMean.csv")
+aggredata<-aggregate(phones[,3:8],by=list(phones$tid),FUN=var)
+write.csv(aggredata,"TowerVar.csv")
+
